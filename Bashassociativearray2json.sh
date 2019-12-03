@@ -2,11 +2,12 @@
 
 jsonfile="file.json"
 hostnamefile="hostnames.txt"
+log="/etc/chef/cache/log-stacktrace.out"
 
 bash2array () {
 declare -A hostnames
 for line in $(echo $input); do
-	hostnames["$line"]="ssh root@$line cat /etc/chef/cache/chef-stacktrace.out" ;
+	hostnames["$line"]="ssh root@$line cat $log" ;
 done
 
 for j in ${!hostnames[@]}; do
