@@ -4,7 +4,7 @@
 # directories.
 # The rsync command we will use.
 RSYNC=`which rsync`
-RSYNC_OPTS="-av "
+RSYNC_OPTS="-avR "
 
 # Host list - Bash array - You can add hosts in the .ssh/config of your script's user
 HOSTLIST='
@@ -13,7 +13,10 @@ ns2
 '
 # Back up directory on local host and source directory on remote host
 BACKUP_DIR='/data/backups'
-ZONES_DIR='/var/lib/knot'
+ZONES_DIR=(
+   /etc/knot
+   /var/lib/knot
+)
 
 # excluded directory
 EXCLUDED="/tmp"
@@ -29,13 +32,16 @@ error_check() {
 
 # The rsync functions
 get_zones() {
-  ${RSYNC} ${RSYNC_OPTS} --exclude $EXCLUDED $HOST:$ZONES_DIR $BACKUP_DIR/$HOST 2>&1 > /dev/null
+  ${RSYNC} ${RSYNC_OPTS} --exclude $EXCLUDED $HOST:${ZONES_DIR[$i]} $BACKUP_DIR/$HOST 2>&1 > /dev/null
 }
 
 # Bash for loop to go through each host and rsync the data.
 for HOST in $HOSTLIST ; do
-  get_zones
-  error_check $?
+  i=0
+  while [ $i -lt ${#ZONES_DIR[@]} ] ; do
+     get_zones
+     error_check $?
+  i=$(( $i + 1 )); done
 done
 
 exit 0
