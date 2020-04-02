@@ -32,5 +32,6 @@ duplicity --encrypt-key $KEY \
           --exclude=/var/tmp \
           $BACKUP_DOC \
           $DEST
+unset PASSPHRASE
 exit 0
 #EOF
