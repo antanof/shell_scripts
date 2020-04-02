@@ -9,6 +9,7 @@
 # account    required     pam_time.so
 # In local backup server, add simple task in cron :
 # 0 12 * * * root /root/duplicity_backup.sh &
+# use pinentry gpg option to hide $PASSPHRASE
 KEY="AF779YF8" # CHANGEME
 BACKUP_DOC="/"
 REMOTE_SERVER="xxx.xxx.xxx.xxx" # CHANGEME
