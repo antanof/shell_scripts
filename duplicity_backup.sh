@@ -1,4 +1,5 @@
 #!/bin/bash
+# you can add pam and firewall rules to restrict the opening of ports on the remote server, see pam_time.so
 KEY="AF779YF8" # CHANGEME
 BACKUP_DOC="/"
 REMOTE_SERVER="xxx.xxx.xxx.xxx" # CHANGEME
