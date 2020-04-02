@@ -1,4 +1,5 @@
 #!/bin/bash
+# full Ansible script : https://github.com/antanof/ansible_duplicity_backup
 # You can add pam and firewall rules to restrict the opening of ports on the remote server, see pam_time.so and firewall-cmd with cron:
 # In the remote backup server, for example install with `crontab -e` :
 # 0 12 * * * root firewall-cmd --zone=FedoraWorkstation --add-service=ssh
