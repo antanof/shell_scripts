@@ -1,5 +1,14 @@
 #!/bin/bash
-# you can add pam and firewall rules to restrict the opening of ports on the remote server, see pam_time.so and firewall-cmd with cron
+# You can add pam and firewall rules to restrict the opening of ports on the remote server, see pam_time.so and firewall-cmd with cron:
+# In the remote backup server, for example install with `crontab -e` :
+# 0 12 * * * root firewall-cmd --zone=FedoraWorkstation --add-service=ssh && firewall-cmd --reload
+# 0 13 * * * root firewall-cmd --zone=FedoraWorkstation --remove-service=ssh && firewall-cmd --reload
+# and in /etc/security.time.conf
+# sshd;*;*;Al1200-1300
+# and in /etc/pam.d/sshd before "account required pam_nologin.so"
+# account    required     pam_time.so
+# In local backup server, add simple task in cron :
+# 0 12 * * * root /root/duplicity_backup.sh &
 KEY="AF779YF8" # CHANGEME
 BACKUP_DOC="/"
 REMOTE_SERVER="xxx.xxx.xxx.xxx" # CHANGEME
