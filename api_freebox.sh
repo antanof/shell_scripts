@@ -1,4 +1,5 @@
 #!/bin/bash
+# appli qui permet l'automatisation de l'ouverture des ports de la freebox via son API
 APP_ID="fw-fbx.sh"
 APP_NAME="firewall"
 APP_VERSION="0.0.1"
