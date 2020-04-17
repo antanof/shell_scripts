@@ -11,7 +11,7 @@
 # In local backup server, add simple task in cron :
 # 0 12 * * * root /root/duplicity_backup.sh &
 # use pinentry gpg option to hide $PASSPHRASE
-KEY="AF779YF8" # CHANGEME
+KEY=`gpg --list-secret-keys | sed '4!d' | tail -c9`
 BACKUP_DOC="/"
 REMOTE_SERVER="xxx.xxx.xxx.xxx" # CHANGEME
 USER="matt" # CHANGEME
